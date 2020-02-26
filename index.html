@@ -1,0 +1,16 @@
+<html>
+<body>
+<script>
+(async () => {
+  const workers = [];
+  for (let i = 0; i < 10000; i++) {
+    workers.push(new Worker(`worker.js`));
+    console.log('worker #', i);
+    await new Promise((accept, reject) => {
+      setTimeout(accept, 100);
+    });
+  }
+})();
+</script>
+</body>
+</html>
